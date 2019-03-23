@@ -31,7 +31,7 @@ public class WorkerApplication {
         switch (command) {
             case "add":
                 Worker newWorker = getNewWorker();
-                WorkerInfoStore.getInfoStoreSingleton().add(newWorker);
+                WorkerInfoStore.getWorkerInfoStoreSingleton().add(newWorker);
                 return;
             case "view":
                 System.out.println("This feature is not implemented");

@@ -30,7 +30,7 @@ public final class WorkerInfoStore {
     private WorkerInfoStore() {
     }
 
-    public static WorkerInfoStore getWorkerInfoStore() {
+    public static WorkerInfoStore getWorkerInfoStoreSingleton() {
         return workerInfoStoreSingleton;
     }
 
