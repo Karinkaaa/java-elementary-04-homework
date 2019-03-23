@@ -7,25 +7,30 @@ package org.app.woker.entities;
  */
 public class QAEngineer extends Worker {
 
-    private boolean automation;
+    private boolean automationQA;
 
-    public QAEngineer(String workerId, String workerName, boolean automation) {
+    public QAEngineer(String workerId, String workerName, boolean automationQA) {
         super(workerId, workerName);
-        this.automation = automation;
+        this.automationQA = automationQA;
     }
 
-    public boolean isAutomation() {
-        return automation;
+    public boolean isAutomationQA() {
+        return automationQA;
     }
 
-    public void setAutomation(boolean automation) {
-        this.automation = automation;
+    public void setAutomationQA(boolean automation) {
+        this.automationQA = automation;
+    }
+
+    @Override
+    public String getWorkerPosition() {
+        return super.getWorkerPosition() + ": QAEngeneer";
     }
 
     @Override
     public String toString() {
         return "QAEngeneer{" +
-                "automation=" + automation +
+                "automationQA=" + automationQA +
                 ", workerId='" + workerId + '\'' +
                 ", workerName='" + workerName + '\'' +
                 ", workerPosition='" + workerPosition + '\'' +

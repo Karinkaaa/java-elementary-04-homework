@@ -8,6 +8,8 @@ package org.app.woker.entities;
 public class Manager extends Worker {
 
     private String projectName;
+    private String project;
+    private int expirience;
 
     public Manager(String workerId, String workerName, String projectName) {
         super(workerId, workerName);

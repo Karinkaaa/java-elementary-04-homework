@@ -14,7 +14,6 @@ public class Programmer extends Worker {
     public static final String POSITION = "Programmer";
 
     private String language;
-
     private String rate;
 
     public Programmer(String workerId, String workerName) {
@@ -42,6 +41,11 @@ public class Programmer extends Worker {
 
     public void setRate(String rate) {
         this.rate = rate;
+    }
+
+    @Override
+    public String getWorkerPosition() {
+        return super.getWorkerPosition() + ": Programmer";
     }
 
     @Override

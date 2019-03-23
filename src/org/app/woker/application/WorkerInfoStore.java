@@ -17,26 +17,26 @@ public final class WorkerInfoStore {
      */
     private static final int LENGTH_EXTEND_FACTOR = 2;
 
-    public final static WorkerInfoStore infoStore = new WorkerInfoStore();
-
-    private Worker[] managers = new Worker[INITIAL_ARRAY_SIZE];
-    private Worker[] programmers = new Worker[INITIAL_ARRAY_SIZE];
-    private Worker[] qaEngineers = new Worker[INITIAL_ARRAY_SIZE];
+    private Manager[] managers = new Manager[INITIAL_ARRAY_SIZE];
+    private Programmer[] programmers = new Programmer[INITIAL_ARRAY_SIZE];
+    private QAEngineer[] qaEngineers = new QAEngineer[INITIAL_ARRAY_SIZE];
 
     private int managersCount;
     private int programmersCount;
     private int qaEngineersCount;
 
-    public static WorkerInfoStore getInfoStoreSingleton() {
-        return infoStore;
-    }
+    private static final WorkerInfoStore workerInfoStoreSingleton = new WorkerInfoStore();
 
     private WorkerInfoStore() {
     }
 
+    public static WorkerInfoStore getWorkerInfoStore() {
+        return workerInfoStoreSingleton;
+    }
+
     public void add(Manager worker) {
         if (managers.length <= managersCount) {
-            managers = extendArrayLength(managers);
+            managers = (Manager[]) extendArrayLength(managers);
         }
         managers[managersCount] = worker;
         managersCount += 1;
@@ -44,7 +44,7 @@ public final class WorkerInfoStore {
 
     public void add(Programmer worker) {
         if (programmers.length <= programmersCount) {
-            programmers = extendArrayLength(programmers);
+            programmers = (Programmer[]) extendArrayLength(programmers);
         }
         programmers[programmersCount] = worker;
         programmersCount += 1;
@@ -52,7 +52,7 @@ public final class WorkerInfoStore {
 
     public void add(QAEngineer worker) {
         if (qaEngineers.length <= qaEngineersCount) {
-            qaEngineers = extendArrayLength(qaEngineers);
+            qaEngineers = (QAEngineer[]) extendArrayLength(qaEngineers);
         }
         qaEngineers[qaEngineersCount] = worker;
         qaEngineersCount += 1;
@@ -69,29 +69,29 @@ public final class WorkerInfoStore {
         } else if (worker instanceof QAEngineer) {
             add((QAEngineer) worker);
         } else {
-            System.out.println("Unknown worker class.");
+            System.out.println("Unknown worker class!");
         }
-        System.out.println("Worker successfully added : " + worker);
+        System.out.println("Worker successfully added: " + worker);
     }
 
-    public Worker[] getWorkersByClass(Class clazz) {
+    public Worker[] getWorkersByClass(Class currentClass) {
         Worker[] source = null;
-        if (clazz == Programmer.class) {
+        if (currentClass == Programmer.class) {
             return programmers;
-        } else if (clazz == Manager.class) {
+        } else if (currentClass == Manager.class) {
             return managers;
-        } else if (clazz == QAEngineer.class) {
+        } else if (currentClass == QAEngineer.class) {
             return qaEngineers;
         } else {
             return null;
         }
     }
 
+
     /**
      * Dynamically extend length of array.
      *
      * @param source array which should be extended.
-     *
      * @return array Worker[] with double length of source, and which stores all elements of source array.
      */
     private Worker[] extendArrayLength(Worker[] source) {
